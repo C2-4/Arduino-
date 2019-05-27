@@ -13,7 +13,6 @@ public:
   Scheduler();
   void update();
   bool registerTask(Task* inputTask, uint16_t intervalRunTime);
-  bool removeTask(Task* inputTask);
 private:
   Task* tasks [STACK_SIZE]; //Array for pointers to tasks.
   bool numOfTasks[STACK_SIZE]; //For figuring out if a place in the tasks is occupied.

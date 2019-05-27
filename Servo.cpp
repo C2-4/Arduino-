@@ -9,15 +9,14 @@ Servo1::Servo1(int pin)
   pinMode(motorControlPin, OUTPUT);   //It states the pin is an output, meaning it gives values to the motor    
 }
 
-bool Servo1::run()
+bool Servo1::run()       //Inherance
 {
-  if(canRun == true){
-     int sensorValue = analogRead(A1);
-  float speed2 = (sensorValue*255.0)/1023.0;
- // Serial.println(speed2);                                                     
-  analogWrite(motorControlPin, speed2);
+  if(canRun == true){      //This is true look in header
+     int sensorValue = analogRead(A1);      //States that it should get value from A1
+  float speed2 = (sensorValue*255.0)/1023.0; // This is not nessesary                                          
+  analogWrite(motorControlPin, speed2);       //Same with this
     };
     
   
-  return true;
+  return true;        //It is a bool function
 }

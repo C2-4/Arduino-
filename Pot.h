@@ -17,6 +17,7 @@ class Pot : public Task
   float totalWatt = 0;
   int cycles = 0;
   
+  
   };
 
 #endif

@@ -4,28 +4,18 @@
 
 //Implementation of Scheduler class
 
-Scheduler::Scheduler()
-{/*
-  for (int i = 0; i < STACK_SIZE; i++)
-  {
-    lastRunTime[i] = 0;
-    ratesForTasks[i] = 0;
-    numOfTasks[i] = false;
-  }*/
-}
-
 void Scheduler::update() //Runs though the tasks array and runs the onces that are on time.
 {
-  uint32_t now = millis();    //Get current time, need for checking the if it has run.
-  for(int i = 0; i < STACK_SIZE; i++)
+  uint32_t now = millis();    //Puts the current time into "now"
+  for(int i = 0; i < STACK_SIZE; i++) //Enters the forloop
   {
-    if (numOfTasks[i] == true){
-      if (now - lastRunTime[i] >= ratesForTasks[i])
+    if (numOfTasks[i] == true){     //numOfTasks 0,1 are true
+      if (now - lastRunTime[i] >= ratesForTasks[i]) //Now is current time, lastRunTime is last time task was run, RatesForTask is what we have set it to in the main
       {
-        Task* tempTask = tasks[i];
+        Task* tempTask = tasks[i]; // First time this function runs tempTask becomes newPot
   
-        tempTask->run();
-        lastRunTime[i] = now;
+        tempTask->run(); //tempTask points to run
+        lastRunTime[i] = now;       //puts last run time equal to "current time"
       }
     }
   }
@@ -34,23 +24,16 @@ void Scheduler::update() //Runs though the tasks array and runs the onces that a
 bool Scheduler::registerTask(Task* inputTasks, uint16_t intervalRunTime) //For adding a task which has to be run.
 {
 
-  for (int i = 0; i < STACK_SIZE; i++)
+  for (int i = 0; i < STACK_SIZE; i++) //Enters a forloop
   {
-    if (numOfTasks[i] == false)
+    if (numOfTasks[i] == false) //Check if the "numOfTasks[i] is false", which it is
     {
-      numOfTasks[i] = true;
-      tasks[i] = inputTasks;
-      //inputTasks->run();
-      lastRunTime[i] = millis();
-      ratesForTasks[i] = intervalRunTime;
-      return true;
+      numOfTasks[i] = true; //Puts it true
+      tasks[i] = inputTasks;   //inputTasks is equal to "Newpot" first time the function is called
+      lastRunTime[i] = millis(); //Saves the current time
+      ratesForTasks[i] = intervalRunTime;   // This is 1000 the first time the function is called
+      return true;  //It is a bool function, needs to return something
     }
   }
-  return false;
-}
-
-bool Scheduler::removeTask(Task* inputTask) //For removing the task from the run array.
-{
- 
   return false;
 }

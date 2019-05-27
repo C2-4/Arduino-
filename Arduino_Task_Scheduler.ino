@@ -3,28 +3,28 @@
 #include "Screen.h"  //Takes care of lcd
 #include "Pot.h"    //Takes care of potentiometer
 
-Scheduler *taskManager;  // Creating a taskManager to run things at specific times
+Scheduler *taskManager;  //Pointer to nowhere yet
 Pot *newpot;            //Pointer to nowhere yet
 Screen *ScreenLCD;      //Same
 Servo1 *Servomotor;     //Same
 
 
 
-void setup() {
+void setup() {          //Everything inside here only runs one time
   Serial.begin(115200);         //Same number as in serial monitor
   
-  taskManager = new Scheduler();    //Puts taskmanger equal to scheduler
+  taskManager = new Scheduler();    //Makes a new object of the type "scheduler" and makes the taskmanger point to scheduler 
   ScreenLCD = new Screen();   //Same
-  newpot = new Pot(A0, ScreenLCD);    //Same
-  Servomotor = new Servo1(9);   //
+  newpot = new Pot(A0, ScreenLCD);    //Gives some parameters to the initializer/constructor 
+  Servomotor = new Servo1(9);   //Same as new pot
 
-  taskManager->registerTask(newpot,1000);   //Feeds the registerTask two paremetors
- // newpot->run();
-  taskManager->registerTask(Servomotor,10);
+  taskManager->registerTask(newpot,1000);   // Feeds registerTask two parameters
+ 
+  taskManager->registerTask(Servomotor,10); // Does exactly the same
 }
 
 
-void loop() {
+void loop() {  //This is the main
   
-  taskManager->update();  //Runs the scheduler, which runs the task.
+  taskManager->update();  //Runs the scheduler object, update funcion, which runs the task.
 }

@@ -9,7 +9,7 @@ public:
   {
     return;
   }
-  virtual bool run()
+  virtual bool run() //Works as a header file for every liberary in this code. This is inherance
   {
     return true;
   };
